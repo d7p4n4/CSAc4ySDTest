@@ -24,9 +24,21 @@ namespace CSAc4ySDTest
                 ctx.ac4ySDSequences.Add(ac4YSDSequence);
                 ctx.SaveChanges();*/
 
-                var s = ctx.ac4ySDSequences.Where(ss => ss.ID == 1).FirstOrDefault();
+                int id = 1;
+                List<int> messageID = new List<int>();
+                
+                var s = ctx.ac4ySDSequences.Where(ss => ss.ID == id).FirstOrDefault();
+                var x = ctx.ac4ySDCommunications.Where(ss => ss.Ac4ySDSequenceID == id);
 
-                Console.WriteLine(s.Communication.Count);
+                foreach(var ac4ySDCommunication in x)
+                {
+                    messageID.Add(ac4ySDCommunication.MessageID);
+                }
+
+                int id2 = messageID[0];
+
+                var y = ctx.ac4ySDMessages.Where(ss => ss.ID == id2).FirstOrDefault();
+                Console.WriteLine(y.Message);
             }
         }
     }
