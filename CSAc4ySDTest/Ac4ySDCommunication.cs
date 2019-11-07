@@ -11,9 +11,8 @@ namespace CSAc4ySDTest
     {
         [ForeignKey("Message")]
         public int MessageID { get; set; }
-        public int RecevierID { get; set; }
-        public int SenderID { get; set; }
         public int Ac4ySDSequenceID { get; set; }
+        public Ac4ySDSequence ac4YSDSequence { get; set; }
         public int ID { get; set; }
         public Ac4ySDParticipant Sender { get; set; }
         public Ac4ySDParticipant Receiver { get; set; }

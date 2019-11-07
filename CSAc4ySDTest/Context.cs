@@ -18,5 +18,15 @@ namespace CSAc4ySDTest
         public DbSet<Ac4ySDMessage> ac4ySDMessages { get; set; }
         public DbSet<Ac4ySDParticipant> ac4ySDParticipants { get; set; }
         public DbSet<Ac4ySDSequence> ac4ySDSequences { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // configures one-to-many relationship
+            modelBuilder.Entity<Ac4ySDCommunication>()
+                .HasRequired<Ac4ySDSequence>(s => s.ac4YSDSequence)
+                .WithMany(g => g.Communications)
+                .HasForeignKey<int>(s => s.Ac4ySDSequenceID);
+        }
     }
+
 }
